@@ -3,17 +3,17 @@ import FormikForm from "./formikForm";
 import React, { useEffect, useState } from "react";
 import CustomFormField from "./customFormField";
 import CustomButton from "./customButton";
-import ImagePickerCloudinary from "../../services/cloudinary/imagePicker";
+// import ImagePickerCloudinary from "../../services/cloudinary/imagePicker";
 
-const AddFoodForm = ({ handleAdd, handleChange }) => {
-  const [url, setUrl] = useState("");
+const UpdateFoodForm = ({ handleAdd, handleChange }) => {
+  //   const [url, setUrl] = useState("");
   const [disabled, setDisabled] = useState(true);
 
   return (
     <FormikForm
       initialValues={{
         food: "",
-        price: "",
+        count: "",
         url: "",
       }}
       onsubmit={(values) => {
@@ -23,17 +23,17 @@ const AddFoodForm = ({ handleAdd, handleChange }) => {
       <CustomFormField name="food" placeholder="food name" icon="food" />
       <CustomFormField
         name="price"
-        placeholder="price"
+        placeholder="count"
         icon="cash"
         keyboardType="number-pad"
       />
-      <ImagePickerCloudinary
+      {/* <ImagePickerCloudinary
         name="url"
         getUrl={(url) => {
           console.log(url, "inForm");
           setDisabled(false);
         }}
-      />
+      /> */}
       <CustomButton
         title="add"
         handleAdd={() => {
@@ -45,6 +45,6 @@ const AddFoodForm = ({ handleAdd, handleChange }) => {
   );
 };
 
-export default AddFoodForm;
+export default UpdateFoodForm;
 
 const styles = StyleSheet.create({});

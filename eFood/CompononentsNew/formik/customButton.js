@@ -4,7 +4,7 @@ import { colors } from "../../../assets/theme/colors";
 import { useFormikContext } from "formik";
 import React from "react";
 
-const CustomButton = ({ title, handleAdd }) => {
+const CustomButton = ({ title, handleAdd, disabled, setDisabled }) => {
   const { handleSubmit } = useFormikContext();
   return (
     <Button
@@ -13,7 +13,9 @@ const CustomButton = ({ title, handleAdd }) => {
       onPress={() => {
         handleSubmit();
         handleAdd();
+        // setDisabled(disabled);
       }}
+      disabled={disabled}
     >
       {title}
     </Button>

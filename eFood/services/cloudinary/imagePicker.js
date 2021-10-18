@@ -5,15 +5,16 @@ import { colors } from "../../../assets/theme/colors";
 import { Button, ActivityIndicator } from "react-native-paper";
 import { useFormikContext } from "formik";
 import { useDimensions } from "@react-native-community/hooks";
+import { config } from "../../CompononentsNew/formik/config";
 
 export default function ImagePickerCloudinary({ name, getUrl }) {
-  let CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/depxg1jxy/image/upload";
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
   const [imageObject, setImageObject] = useState({});
   const [visible, setVisible] = useState(false);
-  const { height, width } = useDimensions().screen;
+  const { width } = useDimensions().screen;
   const { setFieldValue } = useFormikContext();
+  const { CLOUDINARY_URL, preBase64Img, upload_preset } = config;
 
   const CustomerActivityIndicator = ({ animating }) => {
     return (
@@ -31,12 +32,12 @@ export default function ImagePickerCloudinary({ name, getUrl }) {
   };
 
   const getImgUrl = (image) => {
-    let base64Img = `data:image/jpg;base64,${image.base64}`;
+    let base64Img = `${preBase64Img},${image.base64}`;
     setVisible(true);
 
     let data = {
       file: base64Img,
-      upload_preset: "e-food-prototype",
+      upload_preset: upload_preset,
     };
 
     fetch(CLOUDINARY_URL, {
